@@ -1,4 +1,6 @@
 # BlenderPortfolio
+<img width="1314" height="623" alt="image" src="https://github.com/user-attachments/assets/4e8ddde8-8b72-49fd-9813-f07eecd03709" />
+<img width="1323" height="623" alt="image" src="https://github.com/user-attachments/assets/8e8cfbd8-3a5d-4a11-802f-2ffc42d1d048" />
 
 Portafolio interactivo 3D construido con Three.js y un modelo creado en Blender. El usuario controla un personaje que camina por un mundo isométrico y puede explorar los proyectos haciendo clic en las pantallas del escenario.
 
