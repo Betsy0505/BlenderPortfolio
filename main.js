@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
 
 const scene = new THREE.Scene();
 const canvas = document.getElementById("experience-canvas");
@@ -145,7 +146,10 @@ const flowers = [];
 const collidables = [];
 const collisionRaycaster = new THREE.Raycaster();
 
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath("https://cdn.jsdelivr.net/npm/three@0.149.0/examples/jsm/libs/draco/");
 const loader = new GLTFLoader();
+loader.setDRACOLoader(dracoLoader);
 
 loader.load(
   "./try3.glb",
