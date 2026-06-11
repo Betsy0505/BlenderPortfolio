@@ -95,11 +95,11 @@
     background: rgba(0,0,0,0.7);
 }
 
-@media (min-width: 769px) {
+@media (pointer: fine) {
     .dpad { display: none; }
 }
 
-@media (max-width: 768px) {
+@media (pointer: coarse) {
     .controls-hint { display: none; }
 }
 
