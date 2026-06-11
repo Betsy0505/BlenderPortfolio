@@ -18,11 +18,12 @@ let character = {
   moveDuration: 0.15,
 };
 
-const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+const isMobile = navigator.maxTouchPoints > 0;
+const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: !isMobile });
 const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 renderer.setSize(sizes.width, sizes.height);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.shadowMap.enabled = true;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -211,8 +212,9 @@ sun.castShadow = true;
 sun.position.set(75, 580, 0);
 sun.target.position.set(50, 0, 0);
 scene.add(sun.target);
-sun.shadow.mapSize.width = 4096;
-sun.shadow.mapSize.height = 4096;
+const shadowMapSize = isMobile ? 1024 : 4096;
+sun.shadow.mapSize.width = shadowMapSize;
+sun.shadow.mapSize.height = shadowMapSize;
 sun.shadow.camera.left = -200;
 sun.shadow.camera.right = 200;
 sun.shadow.camera.top = 200;
@@ -404,6 +406,14 @@ window.addEventListener("pointermove", onPointerMove);
 window.addEventListener("click", onClick);
 window.addEventListener("pointermove", onPointerMove);
 window.addEventListener("keydown", onKeyDown);
+
+canvas.addEventListener("webglcontextlost", (e) => {
+  e.preventDefault();
+  const loadingScreen = document.getElementById("loading-screen");
+  loadingScreen.style.opacity = "1";
+  loadingScreen.classList.remove("hidden");
+  setTimeout(() => location.reload(), 2000);
+});
 
 const cameraOffset = new THREE.Vector3(-60, 60, -20);
 
