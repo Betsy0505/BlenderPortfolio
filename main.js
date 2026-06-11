@@ -148,7 +148,7 @@ const collisionRaycaster = new THREE.Raycaster();
 const loader = new GLTFLoader();
 
 loader.load(
-  "https://github.com/Betsy0505/BlenderPortfolio/releases/download/v1.0/try3.glb",
+  "./try3.glb",
   function (glb) {
     glb.scene.traverse((child) => {
       if (child.isMesh) {
